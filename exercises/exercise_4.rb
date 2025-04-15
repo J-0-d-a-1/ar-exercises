@@ -17,3 +17,10 @@ puts "--- Men's Apparel Store ---"
 @mens_stores.each do |store|
   puts "#{store.name} - Annual Revenue: #{store.annual_revenue}"
 end
+
+@womens_stores_under_1m = Store.where(womens_apparel: true).where( "annual_revenue < ?", 1000000)
+
+puts "--- Women's Apparel Store under 1M ---"
+@womens_stores_under_1m.each do |store|
+  puts "#{store.name} - Annual Revenue: #{store.annual_revenue}"
+end
