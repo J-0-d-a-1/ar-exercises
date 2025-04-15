@@ -12,6 +12,13 @@ class Store < ActiveRecord::Base
     only_integer: true,
     greater_than_or_equal_to: 0
   }
+  validate :at_least_one_of_mens_or_womens
+
+  def at_least_one_of_mens_or_womens
+    unless mens_apparel || womens_apparel
+      errors.add(:base, "Store must carry at least one of men's or women's apparel")
+    end
+  end
 end
 
 Store.create(name: "Burnaby", annual_revenue: 300000, mens_apparel: true, womens_apparel: true)
